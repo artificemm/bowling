@@ -1,6 +1,8 @@
 class Scoreboard
   SPACER = "\t"
   DOUBLE_SPACER = "\t\t"
+
+  # this is test data
   TEST = {'Jeff': [ [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2]
                   ]}
 
@@ -14,9 +16,11 @@ class Scoreboard
   SCORE = { 'Jeff': [20, 39, 48, 66, 74, 84, 90, 120, 148, 167],
             'John': [16, 25, 44, 53, 82, 101, 110, 124, 132, 151]
           }
+  # end of test data, for debugging only :P
 
-  def initialize(data)
-    @data = data
+  def initialize(frames, score)
+    @data   = data
+    @score  = score
   end
 
   def run
@@ -24,7 +28,7 @@ class Scoreboard
     @data.each do |player, rolling|
       puts player
       puts ["Pinfalls", rolling.flatten].join(SPACER)
-      puts ["Score", SCORE[player]].join(DOUBLE_SPACER) # Test for format
+      puts ["Score", @score[player]].join(DOUBLE_SPACER)
     end
     return true # don't return objects
   end

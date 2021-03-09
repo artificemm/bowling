@@ -4,6 +4,7 @@
   LAST_FRAME = 10
   require_relative 'parser'
   require_relative 'roll'
+  require_relative 'scoreboard'
 
   # 1) Open file from arguments
   filename, *following_args = ARGV
@@ -21,11 +22,15 @@
   @players = @data.keys
 
 
+
   # 5) Print scoreboard
+  scoreboard = Scoreboard.new(@data, @scores)
+  scoreboard.run # this should be the last line
 
   # debug
   puts @players
   puts @data
+  puts @scores
 
 
 
