@@ -1,4 +1,4 @@
-class IncorrectSize < StandardError; end
+class IncorrectDataSize < StandardError; end
 
 class Parser
   LINE_SEPARATOR = "\n"
@@ -24,7 +24,7 @@ class Parser
 
   def test_size
     @game_data.each do |player, rolls|
-      raise IncorrectSize if rolls.size > 21
+      raise IncorrectDataSize if rolls.size > 21
     end
   end
 end
