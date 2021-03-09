@@ -14,7 +14,10 @@
     @data = parser.run
   end
 
+  @players = @data.keys
+
   # debug
+  puts @players
   puts @data
 
 # 2) Parse file into numeric values

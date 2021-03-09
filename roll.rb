@@ -19,10 +19,6 @@ class Roll
     end
   end
 
-  def is_ten?
-    @value == 10
-  end
-
   def inspect
     @value
   end

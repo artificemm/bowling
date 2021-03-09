@@ -1,3 +1,5 @@
+class IncorrectSize < StandardError; end
+
 class Parser
   LINE_SEPARATOR = "\n"
   VALUE_SEPARATOR = "\t"
@@ -16,6 +18,13 @@ class Parser
       end
       @game_data[player].push(Roll.new(roll))
     end
+    test_size
     @game_data
+  end
+
+  def test_size
+    @game_data.each do |player, rolls|
+      raise IncorrectSize if rolls.size > 21
+    end
   end
 end
