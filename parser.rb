@@ -24,7 +24,7 @@ class Parser
 
   def test_size
     @game_data.each do |player, rolls|
-      raise IncorrectDataSize if rolls.size > 21
+      raise IncorrectDataSize if rolls.size > 21 || rolls.size < 10
     end
   end
 end

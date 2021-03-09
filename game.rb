@@ -27,6 +27,7 @@
   # Initialize frames hash
   @players.each do |player|
     @frames[player] = []
+    @scores[player] = []
   end
 
   # build frames by roll
@@ -41,21 +42,25 @@
         @foo.unshift(b)
         if @current_frame != 10
           @frames[player].push('', "X")
+          @scores[player].push([10, @foo[0], @foo[1]])
         else
           @frames[player].push("X")
+          @scores[player].push([10, @foo[0], @foo[1]])
         end
       elsif f.spare?
         @frames[player].push(a, "/")
+        @scores[player].push([10, @foo[0]])
       else
         @frames[player].push(a, b)
+          @scores[player].push([a + b])
       end
       @current_frame += 1
-      # puts @foo
+      puts @scores[player].to_s
+      @scores[player].each { |x| x.inject(0, :+) }
     end
   end
   #compute scores by frame
   # @scores.push(something)
-
   # 5) Print scoreboard
   scoreboard = Scoreboard.new(@frames, @scores)
   scoreboard.run # this should be the last line
