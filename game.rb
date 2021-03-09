@@ -20,11 +20,21 @@
   # 3) Set Frames with 2 rolls each. From frame 1 up to 9
   # 4) Frame 10 is a special case with up to 3 rolls, depends on either strike or spare rolls
   @players = @data.keys
-  (1..9).each do |current_frame|
+  @frames = Hash.new
+  @scores = Hash.new
 
+  # Initialize frames hash
+  @players.each do |player|
+    @frames[player] = []
   end
 
+  # build data by roll
+  @data.each do |player, rolls|
+    
+  end
 
+  #compute scores by frame
+  # @scores.push(something)
 
   # 5) Print scoreboard
   # scoreboard = Scoreboard.new(@data, @scores)
