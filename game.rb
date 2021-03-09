@@ -2,6 +2,7 @@
 # Applicant: Roberto Ruiz, artificemm@gmail.com
   REGULAR_FRAMES = 9
   LAST_FRAME = 10
+  require_relative 'frame'
   require_relative 'parser'
   require_relative 'roll'
   require_relative 'scoreboard'
@@ -12,7 +13,7 @@
     puts "Error. You must provide a txt file with the bowling data."
     raise Errno::ENOENT
   else
-    # 2) Parse file into numeric values
+    # 2) Parse file into numerics
     parser = Parser.new(filename)
     @data = parser.run
   end
@@ -28,11 +29,28 @@
     @frames[player] = []
   end
 
-  # build data by roll
+  # build frames by roll
+  # ["X", "7", "/", 9, 0, "X", 0, 8, 8, "/", "F", 6, "X", "X", "X", 8, 1]
   @data.each do |player, rolls|
-    
+    @current_frame = 0
+    @foo = rolls
+    puts player
+    while !@foo.empty? && @current_frame < 10
+      a, b = @foo.shift(2)
+      f = Frame.new(a.to_i,b.to_i)
+      if f.strike?
+        @foo.unshift(b)
+        @frames[player].push("X")
+      elsif f.spare?
+        @frames[player].push(a, "/")
+      else
+        @frames[player].push(a, b)
+      end
+      @current_frame += 1
+      puts @foo
+    end
   end
-
+  puts @frames
   #compute scores by frame
   # @scores.push(something)
 
@@ -41,9 +59,9 @@
   # scoreboard.run # this should be the last line
 
   # debug
-  puts @players
-  puts @data
-  puts @scores
+  # puts @players
+  # puts @data
+  # puts @scores
 
 
 
