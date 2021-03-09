@@ -20,12 +20,15 @@
   # 3) Set Frames with 2 rolls each. From frame 1 up to 9
   # 4) Frame 10 is a special case with up to 3 rolls, depends on either strike or spare rolls
   @players = @data.keys
+  (1..9).each do |current_frame|
+
+  end
 
 
 
   # 5) Print scoreboard
-  scoreboard = Scoreboard.new(@data, @scores)
-  scoreboard.run # this should be the last line
+  # scoreboard = Scoreboard.new(@data, @scores)
+  # scoreboard.run # this should be the last line
 
   # debug
   puts @players
