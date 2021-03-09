@@ -2,24 +2,8 @@ class Scoreboard
   SPACER = "\t"
   DOUBLE_SPACER = "\t\t"
 
-  # this is test data
-  TEST = {'Jeff': [ [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2]
-                  ]}
-
-  DATA    = { 'Jeff': ["X", "7", "/", 9, 0, "X", 0, 8, 8, "/", "F", 6, "X", "X", "X", 8, 1],
-              'John': [3, "/", 6, 3, "X", 8, 1, "X", "X", 9, 0, 7, "/", 4, 4, "X", 9, 0]
-            }
-
-  PLAYERS = { 'Jeff': ["","X", "7", "/", 9, 0, "", "X", 0, 8, 8, "/", "F", 6, "", "X", "", "X", "X", 8, 1],
-              'John': [3, "/", 6, 3, "", "X", 8, 1, "", "X", "", "X", 9, 0, 7, "/", 4, 4, "X", 9, 0] }
-
-  SCORE = { 'Jeff': [20, 39, 48, 66, 74, 84, 90, 120, 148, 167],
-            'John': [16, 25, 44, 53, 82, 101, 110, 124, 132, 151]
-          }
-  # end of test data, for debugging only :P
-
   def initialize(frames, score)
-    @data   = data
+    @data   = frames
     @score  = score
   end
 
@@ -28,7 +12,7 @@ class Scoreboard
     @data.each do |player, rolling|
       puts player
       puts ["Pinfalls", rolling.flatten].join(SPACER)
-      puts ["Score", @score[player]].join(DOUBLE_SPACER)
+      # puts ["Score", @score[player]].join(DOUBLE_SPACER)
     end
     return true # don't return objects
   end

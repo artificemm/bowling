@@ -34,29 +34,31 @@
   @data.each do |player, rolls|
     @current_frame = 0
     @foo = rolls
-    puts player
-    while !@foo.empty? && @current_frame < 10
+    while !@foo.empty? && @current_frame <= 10
       a, b = @foo.shift(2)
       f = Frame.new(a.to_i,b.to_i)
       if f.strike?
         @foo.unshift(b)
-        @frames[player].push("X")
+        if @current_frame != 10
+          @frames[player].push('', "X")
+        else
+          @frames[player].push("X")
+        end
       elsif f.spare?
-        @frames[player].push(a, "/")
+        @frames[player].push(a.to_i, "/")
       else
-        @frames[player].push(a, b)
+        @frames[player].push(a.to_i, b.to_i)
       end
       @current_frame += 1
-      puts @foo
+      # puts @foo
     end
   end
-  puts @frames
   #compute scores by frame
   # @scores.push(something)
 
   # 5) Print scoreboard
-  # scoreboard = Scoreboard.new(@data, @scores)
-  # scoreboard.run # this should be the last line
+  scoreboard = Scoreboard.new(@frames, @scores)
+  scoreboard.run # this should be the last line
 
   # debug
   # puts @players
