@@ -13,7 +13,7 @@
     puts "Error. You must provide a txt file with the bowling data."
     raise Errno::ENOENT
   else
-    # 2) Parse file into numerics
+    # 2) Parse file into numeric values
     parser = Parser.new(filename)
     @data = parser.run
   end
@@ -33,10 +33,10 @@
   # ["X", "7", "/", 9, 0, "X", 0, 8, 8, "/", "F", 6, "X", "X", "X", 8, 1]
   @data.each do |player, rolls|
     @current_frame = 0
-    @foo = rolls
+    @foo = rolls.map(&:to_i)
     while !@foo.empty? && @current_frame <= 10
       a, b = @foo.shift(2)
-      f = Frame.new(a.to_i,b.to_i)
+      f = Frame.new(a,b)
       if f.strike?
         @foo.unshift(b)
         if @current_frame != 10
@@ -45,9 +45,9 @@
           @frames[player].push("X")
         end
       elsif f.spare?
-        @frames[player].push(a.to_i, "/")
+        @frames[player].push(a, "/")
       else
-        @frames[player].push(a.to_i, b.to_i)
+        @frames[player].push(a, b)
       end
       @current_frame += 1
       # puts @foo
