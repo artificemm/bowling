@@ -1,7 +1,7 @@
 class Frame
-  def initialize(first_roll = 0, second_roll = 0)
-    @first_roll   = first_roll
-    @second_roll  = second_roll
+  def initialize(first_roll, second_roll)
+    @first_roll   = first_roll || 0
+    @second_roll  = second_roll || 0
   end
 
   def strike?
