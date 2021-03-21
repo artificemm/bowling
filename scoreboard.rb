@@ -11,8 +11,8 @@ class Scoreboard
     puts header
     @data.each do |player, rolling|
       puts player
-      puts ["Pinfalls", rolling.flatten].join(SPACER)
-      puts ["Score", @score[player].map.reduce(:+)].join(DOUBLE_SPACER)
+      puts ["Pinfalls", rolling].join(SPACER)
+      puts ["Score", @score[player]].join(DOUBLE_SPACER)
     end
     return true # don't return objects
   end
