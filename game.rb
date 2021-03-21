@@ -42,23 +42,35 @@
   @data.each do |player, rolls|
     @current_frame = 0
     @rolls = rolls.map(&:to_i)
-    while !@rolls.empty? #&& @current_frame <= 9
+    puts @rolls.inspect if @current_frame.zero?
+    while @rolls.size > 0 && @current_frame < 10
       a, b = @rolls.shift(2)
-      f = Frame.new(a,b)
-      if f.strike?
-        @rolls.unshift(b)
-        current_player_frame(player, '', 'X')
-        current_player_score(player, 10 + @rolls[0].to_i + @rolls[1].to_i) # cast nils into 0's
-      elsif f.spare?
-        current_player_frame(player, a, '/')
-        current_player_score(player,(10 + @rolls[0].to_i))
-      else
-        a, b = a.to_i, b.to_i
-        current_player_frame(player, a, b)
-        current_player_score(player, f.total)
+      frame = Frame.new(a,b)
+      case
+        when frame.strike?
+          @rolls.unshift(b)
+          current_player_frame(player, '', 'X')
+          current_player_score(player, frame.total + @rolls[0].to_i + @rolls[1].to_i)
+        when frame.spare?
+          current_player_frame(player, a, '/')
+          current_player_score(player, frame.total + @rolls[0].to_i)
+        when frame.open?
+          a, b = a.to_i, b.to_i
+          current_player_frame(player, a, b)
+          current_player_score(player, frame.total)
       end
-      if @current_frame > 0 && @current_frame < 9
-        @scores[player][@current_frame] += @scores[player][@current_frame - 1]
+      puts "At frame: #{@current_frame}, rolls are: #{@rolls.inspect}"
+      @scores[player][@current_frame] += @scores[player][@current_frame - 1] unless @current_frame.zero?
+      if @current_frame == 9
+        puts a
+        puts b
+        puts @rolls.inspect
+      #   case @rolls.size
+      #   when 2
+          
+      #   end
+      # else
+        
       end
       @current_frame += 1
     end

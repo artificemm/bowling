@@ -9,7 +9,7 @@ class Frame
   end
 
   def spare?
-    (10 - @first_roll - @second_roll) == 0
+    (10 - @first_roll - @second_roll) == 0 && !strike?
   end
 
   def open?
@@ -17,6 +17,7 @@ class Frame
   end
 
   def total
+    return 10 unless open?
     @first_roll + @second_roll
   end
 
