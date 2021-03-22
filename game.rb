@@ -1,11 +1,11 @@
 # Bowling challenge
 # Applicant: Roberto Ruiz, artificemm@gmail.com
+# Ruby version: 2.7.2
 
   require_relative 'frame'
   require_relative 'parser'
   require_relative 'roll'
   require_relative 'scoreboard'
-  require 'pry'
 
   def current_player_score(player, score)
     @scores[player].push(score)
