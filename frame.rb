@@ -1,15 +1,19 @@
 class Frame
-  def initialize(first_roll, second_roll)
-    @first_roll   = first_roll || 0
-    @second_roll  = second_roll || 0
+  attr_accessor :first_roll, :second_roll
+  def initialize(fr: 0, sr: 0)
+    @first_roll   = fr
+    @second_roll  = sr
+    if @first_roll == 10
+      @second_roll = 0
+    end
   end
 
   def strike?
-    @first_roll == 10
+    @first_roll == 10 && @second_roll == 0
   end
 
   def spare?
-    (10 - @first_roll - @second_roll) == 0 && !strike?
+    (10 -(@first_roll + @second_roll)) == 0
   end
 
   def open?

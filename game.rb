@@ -42,10 +42,9 @@
   @data.each do |player, rolls|
     @current_frame = 0
     @rolls = rolls.map(&:to_i)
-    puts @rolls.inspect if @current_frame.zero?
-    while @rolls.size > 0 && @current_frame < 10
+    while @rolls.size > 0  && @current_frame <= 9
       a, b = @rolls.shift(2)
-      frame = Frame.new(a,b)
+      frame = Frame.new(fr: a.to_i, sr: b.to_i)
       case
         when frame.strike?
           @rolls.unshift(b)
@@ -55,23 +54,11 @@
           current_player_frame(player, a, '/')
           current_player_score(player, frame.total + @rolls[0].to_i)
         when frame.open?
-          a, b = a.to_i, b.to_i
+          a, b = a, b
           current_player_frame(player, a, b)
           current_player_score(player, frame.total)
       end
-      puts "At frame: #{@current_frame}, rolls are: #{@rolls.inspect}"
       @scores[player][@current_frame] += @scores[player][@current_frame - 1] unless @current_frame.zero?
-      if @current_frame == 9
-        puts a
-        puts b
-        puts @rolls.inspect
-      #   case @rolls.size
-      #   when 2
-          
-      #   end
-      # else
-        
-      end
       @current_frame += 1
     end
   end
