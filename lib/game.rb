@@ -1,9 +1,16 @@
+# frozen_string_literal: true
+
 require 'frame'
 require 'roll'
 
 class Game
+  class Error < StandardError; end
+  class ExcededRollError < StandardError; end
+  LINE_SEPARATOR = "\n"
+  VALUE_SEPARATOR = "\t"
 
   @instance = new
+  @game_data = {}
 
   private_class_method :new
 
@@ -11,17 +18,14 @@ class Game
     @instance
   end
 
-  class Error < StandardError; end
-  class ExcededRollError < StandardError; end
-  LINE_SEPARATOR = "\n"
-  VALUE_SEPARATOR = "\t"
+  attr_accessor :game_data
 
   def input_file(filename)
     @input_file = File.open(filename)
+    #check for existing file, handle missing arguments
   end
 
   def init_game_data
-    @game_data = {}
     @input_file.readlines(chomp: true).each do |line|
       player, roll = line.split(VALUE_SEPARATOR)
       if @game_data[player].nil?

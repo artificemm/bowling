@@ -65,5 +65,4 @@ class Frame
   def both_values_present?
     !@first_roll.nil? && !@second_roll.nil?
   end
-
 end
