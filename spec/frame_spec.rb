@@ -8,5 +8,4 @@ describe Frame do
       expect(frame.is_strike?).to be(true)
     end
   end
-  
 end
