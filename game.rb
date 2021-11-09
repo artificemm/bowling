@@ -1,7 +1,8 @@
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'frame'
-require 'roll'
+require './lib/frame'
+require './lib/roll'
 
 class Game
   class Error < StandardError; end
@@ -10,17 +11,20 @@ class Game
   VALUE_SEPARATOR = "\t"
 
   @instance = new
-  @game_data = {}
-
+  
   private_class_method :new
-
+  
   def self.instance
     @instance
   end
 
-  attr_accessor :game_data
+  attr_accessor :data
 
-  def input_file(filename)
+  def data
+    @data ||= {}
+  end
+
+  def input_from_file(filename)
     @input_file = File.open(filename)
     #check for existing file, handle missing arguments
   end
@@ -62,3 +66,8 @@ class Game
     players = @game_data.keys
   end
 end
+
+
+filename, *following_args = ARGV
+check_for_file_input_data
+game = Game.instance
