@@ -1,55 +1,34 @@
 # Bowling
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bowling`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'bowling'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install bowling
+Ten-pin bowling scoreboard program. Developed as an interview challenge for Jobsity, LLC.
 
 ## Usage
 
-TODO: Write usage instructions here
+Program can be run with the following command:
+    $ ruby game.rb <filename.txt>
+
+    Where <filename.txt> should be a valid game file with the following structure:
+        Player1 10
+        Player2 4
+        Player2 6
+        Player3 0
+        Player3 10
+
+        Each line has the player name and the value of the roll separated by a tab character.
+
+    There are some testing files provided in the `data` folder.
+
+The program will output the scoreboard of the game with the sum for each frame, accounting for bowling rules, such as `spare` and `strike`.
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bowling.
+Bug reports and pull requests are welcome on GitHub at https://github.com/artificemm/bowling.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-
-# Ten-pin bowling challenge for Jobsity
-
-## Aplicant: Roberto Ruiz
-
-Ten-pin bowling program will be run from the command line, taking a text file as argument for reading, parsing it and outputting a formatted text following the rules of a standard bowling game scoring system.
-
-This text will be changing with the project as commits shape the whole challenge.
-
-## Usage:
-
-$ ruby game.rb <filename.txt>
-
-This will output the game rolls as a scoreboard formatted as requested.
