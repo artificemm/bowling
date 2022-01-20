@@ -1,11 +1,10 @@
 class Frame
   attr_accessor :first_roll, :second_roll
+
   def initialize(fr: 0, sr: 0)
     @first_roll   = fr
     @second_roll  = sr
-    if @first_roll == 10
-      @second_roll = 0
-    end
+    @second_roll = 0 if @first_roll == 10
   end
 
   def strike?
